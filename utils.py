@@ -1,6 +1,6 @@
 import json, os
 
-def load_label_mapping(file_name: str = 'label.json') -> tuple[dict, dict]:
+def load_label_mapping(file_name: str = 'label.json') -> tuple[dict[str, int], dict[int, str]]:
     with open('label.json') as f:
         ds_label_tag_mapping = json.load(f)
         ds_tag_label_mapping = dict((v,k) for k,v in ds_label_tag_mapping.items())
