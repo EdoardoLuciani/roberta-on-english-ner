@@ -1,5 +1,5 @@
 # NER detection powered by RoBERTa
-Presented here is an english NER model, finetuned from [roberta-base](https://huggingface.co/FacebookAI/roberta-base). Weights available on [huggingface](https://huggingface.co/EdoardoLuciani/roberta-on-english-ner)
+Presented here is an english NER model, finetuned from [roberta-base](https://huggingface.co/FacebookAI/roberta-base). Weights available on [huggingface](https://huggingface.co/EdoardoLuciani/roberta-on-english-ner). Code available on [github](https://github.com/EdoardoLuciani/roberta-on-english-ner)
 
 ### Sample
 The setup closely follows the [RobertaForTokenClassification](https://huggingface.co/docs/transformers/model_doc/roberta#transformers.RobertaForTokenClassification) sample code:
