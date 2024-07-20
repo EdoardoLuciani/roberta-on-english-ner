@@ -1,4 +1,6 @@
-import json, os
+import json, os, numpy as np
+from sklearn.metrics import accuracy_score
+
 
 def load_label_mapping(file_name: str = 'label.json') -> tuple[dict[str, int], dict[int, str]]:
     with open('label.json') as f:
@@ -75,3 +77,14 @@ def process_dataset(ds, tokenizer):
     return (ds.map(tokenize_and_align_labels, with_indices=True, remove_columns=['tokens', 'tags'], num_proc=os.cpu_count(), fn_kwargs=args)
             .shuffle(seed=5473)
             .map(group_entries, batched=True, batch_size=None))
+
+
+def compute_accuracy(logits, labels):
+    r_labels = np.ravel(labels)
+    r_predictions = np.ravel(logits)
+
+    # lookup ignored tokens and equalize them in the prediction matrix, so it is ignored in the accuracy score
+    ignored_tokens_indexes = np.where(r_labels == -100)    
+    r_predictions[ignored_tokens_indexes] = -100
+
+    return accuracy_score(r_labels, r_predictions)
